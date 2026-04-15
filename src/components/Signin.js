@@ -45,7 +45,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="row justify-content-center mt-5">
+    <div className="row justify-content-center mt-5 ">
       <div className="col-md-6 card shadow p-4">
             <h2>Sign In</h2>
             <form onSubmit={submit}>

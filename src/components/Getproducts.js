@@ -1,77 +1,76 @@
-import {useState, useEffect} from "react";//for state management
-import axios from "axios";//for the api access
-import { useNavigate } from "react-router-dom";//used to link other components
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Getproducts = () => {
-    //initialize the hooks
-    const [products, setProducts] = useState([]);//empty array
-    const [loading, setLoading] = useState('');//loading message to show loading state
-    const[error, setError] = useState('');//error message to show when an error occurs
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState("");
+    const [error, setError] = useState("");
     
-    //create an object of useNavigate()
     const navigate = useNavigate();
-
-
-        //specfy the location of images
     const img_url = "https://andrewmuga.alwaysdata.net/static/images/";
 
-        //function to help fetch the data
     const getProducts = async () => {
-        //set the state to be loading
-        setLoading("Please wait we are retrieving the products.")
-
-        //try - catch to assist managing the process
-
-        try{
+        setLoading("Please wait, we are retrieving the products...");
+        try {
             const response = await axios.get('https://andrewmuga.alwaysdata.net/api/get_product_details');
             setProducts(response.data);
             setLoading("");
-        } catch (error){
+        } catch (error) {
             setLoading("");
-            setError("There is an error!");
+            setError("There was an error fetching the games.");
         }
-    }
-    
+    };
 
-    //useEffect to help trigger the process of product fetching once the component has fully loaded
     useEffect(() => {
-        //call the function responsible for fetching the products
         getProducts();
-
     }, []);
 
     return (
-        <section >
-            <div className="row">
-                <h3 className="mt-5">Available Games</h3>
+        <section className="container py-5">
+            <h3 className="mb-4">Available Games</h3>
 
-            {/* bind the variables */}
-                {loading && <p>{loading}</p> }
-                {error &&<p className="text-danger">{error}</p>}
+            {loading && <div className="alert alert-info">{loading}</div>}
+            {error && <div className="alert alert-danger">{error}</div>}
 
-                {/* map the products and display them*/}
+            <div className="row g-4">
                 {products.map((product) => (
-                //create a UI for each product to be displayed on
-                    <div className="col-md-3"  key={product.id}>
-                        <div className="card shadow card-margin">
-                            {/*   product image */}
-                        <img className="product_img mt-4" src={img_url + product.product_photo} alt={product.product_name}/>
-                        <div className="card h-100">
-                            <div class = 'card-body'>
-                                <h5 className="mt-2">{product.product_name}</h5>
-                                <p className="text-muted">{product.product_description}</p>
-                                <b className="text-secondary">Ksh{product.product_cost}</b> <br/>
+                    <div className="col-md-4 col-lg-3 d-flex align-items-stretch" key={product.id}>
+                        <div className="card shadow-sm w-100 h-100 border-0">
+                            {/* Fixed Aspect Ratio for Image */}
+                            <div style={{ height: "200px", overflow: "hidden" }}>
+                                <img 
+                                    src={`${img_url}${product.product_photo}`} 
+                                    className="card-img-top p-3" 
+                                    alt={product.product_name}
+                                    style={{ height: "100%", width: "100%", objectFit: "contain" }}
+                                />
                             </div>
-                        {/* button*/}
-                        <button className="btn btn-dark mt-2 w-100" onClick={() => navigate("/makepayment", {state : {product}})}>Buy Now </button>
 
-                        </div>
-                    </div>    
-                </div>
-            ))}
-
-        </div>
+                            <div className="card-body d-flex flex-column">
+                                <h5 className="card-title h6 fw-bold">{product.product_name}</h5>
+                                
+                                {/* flex-grow-1 pushes the content below it to the bottom */}
+                                <p className="card-text text-muted small flex-grow-1">
+                                    {product.product_description}
+                                </p>
+                                
+                                <div className="mt-3">
+                                    <p className="fw-bold text-primary mb-2">Ksh {product.product_cost}</p>
+                                    <button 
+                                        className="btn btn-dark w-100 py-2" 
+                                        onClick={() => navigate("/makepayment", { state: { product } })}
+                                    >
+                                        Buy Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                ))}
+            </div>
         </section>
     );
-}
+};
+
 export default Getproducts;
