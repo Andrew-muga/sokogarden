@@ -36,7 +36,7 @@ const Getproducts = () => {
             <div className="row g-4">
                 {products.map((product) => (
                     <div className="col-md-4 col-lg-3 d-flex align-items-stretch" key={product.id}>
-                        <div className="card shadow-sm w-100 h-100 border-0">
+                        <div className="card shadow-md w-100 h-100 border-0">
                             {/* Fixed Aspect Ratio for Image */}
                             <div style={{ height: "200px", overflow: "hidden" }}>
                                 <img 
