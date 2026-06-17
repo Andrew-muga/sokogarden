@@ -6,7 +6,7 @@ import Signup from './components/Signup';
 import Getproducts from './components/Getproducts';
 import Addproduct from './components/Addproduct';
 import Makepayment from './components/Makepayment';
-
+import Footer from './components/Footer';
 
 
 
@@ -15,19 +15,20 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <header className="App-header">
-        <h1>Sokogarden - Buy & Sell Online</h1>
+        <nav className='navbar'>
+         <div className='logo'>GamingGarden - Buy & Sell Games Online</div>
 
-      </header>
+         <div className='nav-links'>
+          <Link to = '/' className='btn btn-success m-2'>Home</Link> 
+          <Link to = '/addproduct' className='btn btn-success   m-2'>Add Product</Link> 
+          <Link to = '/signup' className='btn btn-success m-2'>Sign Up</Link>
+          <Link to = '/signin' className='btn btn-success m-2'>Sign In</Link> 
+          {/* this is the default page */}
+         </div>
+        </nav>
+       </header>
 
-       <nav className='m-4'>
-      <Link to = '/' className='btn btn-success mx-2'>Home</Link> 
-      <Link to = '/addproduct' className='btn btn-success mx-2'>Add Product</Link> 
-      <Link to = '/signup' className='btn btn-success mx-2'>Sign Up</Link>
-      <Link to = '/signin' className='btn btn-success mx-2'>Sign In</Link> 
-      
-      {/* this is the default page */}
        
-       </nav>
        
       <Routes>
          <Route path ='/signup' element = {<Signup />}/>
@@ -36,10 +37,10 @@ function App() {
          <Route path = "/addproduct" element = {<Addproduct />}/>
          <Route path = "/makepayment" element = {<Makepayment />}/>
       </Routes>
-     
-    </div>
-    </BrowserRouter>
-
+      <Footer/>
+    </div>  
+    
+     </BrowserRouter>
   );
 }
 

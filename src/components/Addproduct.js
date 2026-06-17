@@ -1,6 +1,6 @@
 import { useState } from "react"; // for state management
-
 import axios from "axios"; //For API Access
+
 
 
 
@@ -225,7 +225,7 @@ const Addproduct = () => {
 
         </form>
 
-      </div>
+      </div><br/>
 
     </div>
 

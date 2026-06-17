@@ -29,7 +29,8 @@ const Makepayment = () => {
     }//(e) stands for an event
 
     return(
-        <div>
+        
+        <div className="card-pay">
             <h1>LIPA NA MPESA</h1>
             <p>Product Name :{product.product_name}</p>
             <p>Product Cost :{product.product_cost}</p>

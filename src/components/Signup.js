@@ -103,7 +103,7 @@ const Signup = () => {
                 </form>
 
                 Already have an account ? <Link to = '/signin'>Sign In</Link> <br />
-            </div>
+            </div><br/>
 
         </div>
     );

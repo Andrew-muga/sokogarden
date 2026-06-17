@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color:cadetblue;
-  height: 70cm;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -17,17 +17,17 @@
 
 .App-header {
   background-color:darkslategrey;
-  min-height:6cm;
+  min-height:3cm;
   display:grid;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size:xx-large; 
   color:rgb(185, 185, 24);
 }
 
 .App-link {
   color:rgb(145, 8, 8);
+  justify-content: flex-start;
 }
 
 @keyframes App-logo-spin {
@@ -43,3 +43,25 @@
   height: 250px;
   object-fit: contain;
 }
+
+.text-at-edge{
+  text-align:left;
+}
+
+.nav-link{
+ display: flex;
+ gap:10px
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between; /* Pushes logo to left, nav-links to right */
+  align-items: center;            /* Centers them vertically */
+  padding: 10px 20px;            /* Adds breathing room on the sides */
+  width: 100%;
+}
+
+.card-pay{
+  padding:10px;
+}
+
